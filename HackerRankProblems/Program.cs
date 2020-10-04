@@ -154,20 +154,25 @@ Constraints:
     */
         public static int[] GetIndices(int[] arr, int limit)
         {
-            Dictionary <int, int> myDict = new Dictionary<int, int>();
-            for(int i = 0; i < arr.Length; i++)
-            {
-                myDict.Add(arr[i], i);			
-            }		
-            for(int i = 0; i < arr.Length; i++)
-            {			
-                if(myDict.ContainsKey(limit-arr[i]))
-                {				
-                    int [] result;
-                    return result  = (i > myDict[limit - arr[i]]) ? new int []{ i, myDict[limit - arr[i]]} : new int []{myDict[limit - arr[i]], i};
-                }
-            }
-            return new int[2];
+		Dictionary <int, int> myDict = new Dictionary<int, int>();
+		for(int i = 0; i < arr.Length; i++)
+		{
+		  if(!myDict.ContainsKey(arr[i]))
+					  myDict.Add(arr[i], i);	
+		}		
+		for(int i = 0; i < arr.Length; i++)
+		{			
+		if(myDict.ContainsKey(limit-arr[i]))
+		{				
+		  if(i > myDict[limit - arr[i]]){
+		    return new int []{ i, myDict[limit - arr[i]]};
+		  }
+		  else{
+		    return new int []{myDict[limit - arr[i]], i};
+		  }          
+		}
+		}
+		return new int[]{};
         }	
         public static int CountPairs(int[] input)
         {
